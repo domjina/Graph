@@ -20,12 +20,8 @@ public class Graph {
         return Math.round(count);
     }
 
-    Set<Vertex> vertices(){
-        Set<Vertex> vertices = new HashSet<Vertex>();
-        for (Vertex v: adjacencyList.keySet()){
-            vertices.add(v);
-        }
-        return vertices;
+    ArrayList<Vertex> vertices(){
+        return new ArrayList<Vertex>(adjacencyList.keySet());
     }
 
     Set<Edge> edges(){
@@ -183,3 +179,8 @@ public class Graph {
         e = new Edge(e.getEndVertices().get(0),v,e.getPosition());
     }
 }
+
+
+/*
+ * removeVertex(v) - remove vertex v and all its incident Edges
+ */
