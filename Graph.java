@@ -58,6 +58,8 @@ public class Graph {
         return vertices;
     }
 
+    ArrayList<Edge> incidentEdges(Vertex v){return adjacencyList.get(v);}
+
     ArrayList<Vertex> endVertices(Edge e){return e.getEndVertices();}
 
     Vertex opposite(Vertex v, Edge e){return e.getOppositeVertex(v);}
@@ -96,6 +98,46 @@ public class Graph {
     int inDegree(Vertex v){return v.getInDegree();}
 
     int outDegree(Vertex v){return v.getOutDegree();}
+
+    ArrayList<Edge> inIncidentEdges(Vertex v){
+        ArrayList<Edge> edges = new ArrayList<Edge>();
+        for (Edge e: adjacencyList.get(v)){
+            if (e.getDirection() == true && e.getEndVertices().get(1).equals(v)){
+                edges.add(e);
+            }
+        }
+        return edges;
+    }
+
+    ArrayList<Edge> outIncidentEdges(Vertex v){
+        ArrayList<Edge> edges = new ArrayList<Edge>();
+        for (Edge e: adjacencyList.get(v)){
+            if (e.getDirection() == true && e.getEndVertices().get(0).equals(v)){
+                edges.add(e);
+            }
+        }
+        return edges;
+    }
+
+    ArrayList<Vertex> inAdjacentVertices(Vertex v){
+        ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+        for (Edge e: adjacencyList.get(v)){
+            if (e.getDirection() == true){
+                vertices.add(e.getEndVertices().get(0));
+            }
+        }
+        return vertices;
+    }
+
+    ArrayList<Vertex> outAdjacentVertices(Vertex v){
+        ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+        for (Edge e: adjacencyList.get(v)){
+            if (e.getDirection() == true){
+                vertices.add(e.getEndVertices().get(1));
+            }
+        }
+        return vertices;
+    }
 
     Edge insertEdge(Vertex v, Vertex w, int position){
         Edge e = new Edge(v, w, position);
